@@ -2,7 +2,8 @@
   "name": "apk-mirror",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon app.js"
   },
@@ -10,6 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^3.1.0"
+    "axios": "^1.6.7",
+    "bull": "^4.12.2",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.1",
+    "nodemon": "^3.1.0",
+    "redis": "^4.6.13"
   }
 }
