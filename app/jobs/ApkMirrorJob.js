@@ -4,7 +4,7 @@ import Variant from "../../models/Variant.js";
 const apkMirrorJob = new Queue("sendApkMirrorData", {
   redis: {
     port: process.env.REDIS_PORT,
-    host: process.env.REDIS_PASSWORD,
+    host: "redis",
   },
 });
 

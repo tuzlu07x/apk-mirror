@@ -15,7 +15,8 @@ export default class ApkVariantScraping {
 
   async request() {
     try {
-      const proxy = this.getRandomProxy();
+      let proxy = this.getRandomProxy();
+      console.log("proxy:  ", proxy);
       const versionId = this.setVariantIdAccordingUrl();
       const url = `${process.env.APK_MIRROR_BASE_URI}/apk/instagram/instagram-instagram/instagram-instagram-${versionId}-release/`;
       const response = await axios.get(url, {
@@ -39,6 +40,15 @@ export default class ApkVariantScraping {
 
       this.pushData(apkVariants, $);
     } catch (error) {
+      if (error.response && error.response.status === 403) {
+        let proxy = this.getRandomProxy();
+        console.log("Proxy blocked. 403 Code");
+
+        this.proxyList = this.proxyList.filter(
+          (p) => p.ip !== proxy.ip || p.port !== proxy.port
+        );
+        return this.request();
+      }
       throw new Error("Error fetching data: " + error.message);
     } finally {
       await this.delay(3000);
@@ -70,7 +80,8 @@ export default class ApkVariantScraping {
   }
 
   getRandomProxy() {
-    for (let i = 0; i < this.proxyList.length; i++) return this.proxyList[i];
+    const randomIndex = Math.floor(Math.random() * this.proxyList.length);
+    return this.proxyList[randomIndex];
   }
 
   async delay(ms) {

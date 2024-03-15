@@ -20,6 +20,7 @@ services:
     environment:
       MONGO_URI: mongodb://mongodb:27017/apk-mirror
       DB_NAME: apk-mirror
+      REDIS_PORT: 6379
     env_file:
       - .env
 
