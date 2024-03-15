@@ -54,14 +54,19 @@ export default class ApkVariantScraping {
       const variantIdElement = $(element).find(".colorLightBlack").first();
       const variantCode = variantIdElement.text().trim();
 
-      return this.data.push({
-        variantCode,
-        variantId: this.variantId,
-        architecture,
-        minVersion,
-        screenDpi,
-        releaseDate,
-      });
+      if (variantCode !== null) {
+        return this.data.push({
+          variantCode:
+            typeof variantCode === "string"
+              ? parseInt(variantCode)
+              : variantCode,
+          variantId: this.variantId,
+          architecture,
+          minVersion,
+          screenDpi,
+          releaseDate: new Date(releaseDate),
+        });
+      }
     });
   }
 
