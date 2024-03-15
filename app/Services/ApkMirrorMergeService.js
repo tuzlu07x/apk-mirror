@@ -10,8 +10,8 @@ export default class ApkMirrorMergeService {
   async send() {
     await this.apkDistribution.request();
     this.apkDistribution.getData().map(async (item) => {
-      console.log("service burasi: ", item.varianId);
-      const apkVariant = new ApkVariant(item.varianId);
+      console.log("service burasi: ", item.versionId);
+      const apkVariant = new ApkVariant(item.versionId);
       await apkVariant.request();
       const response = await Queue.add({
         type: "apk-mirror",

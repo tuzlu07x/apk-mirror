@@ -3,8 +3,8 @@ import cheerio from "cheerio";
 import { proxies } from "../../proxyList.js";
 
 export default class ApkVariantScraping {
-  constructor(variantId) {
-    this.variantId = variantId;
+  constructor(versionId) {
+    this.versionId = versionId;
     this.data = [];
     this.proxyList = proxies;
   }
@@ -16,7 +16,8 @@ export default class ApkVariantScraping {
   async request() {
     try {
       const proxy = this.getRandomProxy();
-      const url = `${process.env.APK_MIRROR_BASE_URI}/apk/instagram/instagram-instagram/instagram-instagram-${this.variantId}-release/`;
+      const versionId = this.setVariantIdAccordingUrl();
+      const url = `${process.env.APK_MIRROR_BASE_URI}/apk/instagram/instagram-instagram/instagram-instagram-${versionId}-release/`;
       const response = await axios.get(url, {
         proxy: {
           host: proxy.ip,
@@ -52,15 +53,13 @@ export default class ApkVariantScraping {
       const screenDpi = tableCells.eq(3).text().trim();
       const releaseDate = $(element).find(".dateyear_utc").text().trim();
       const variantIdElement = $(element).find(".colorLightBlack").first();
-      const variantCode = variantIdElement.text().trim();
+      const variantId = variantIdElement.text().trim();
 
-      if (variantCode !== null) {
+      if (variantId !== null) {
         return this.data.push({
-          variantCode:
-            typeof variantCode === "string"
-              ? parseInt(variantCode)
-              : variantCode,
-          variantId: this.variantId,
+          variantId:
+            typeof variantId === "string" ? parseInt(variantId) : variantId,
+          versionId: this.versionId,
           architecture,
           minVersion,
           screenDpi,
@@ -76,5 +75,9 @@ export default class ApkVariantScraping {
 
   async delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  setVariantIdAccordingUrl() {
+    return this.versionId.replace(/\./g, "-");
   }
 }

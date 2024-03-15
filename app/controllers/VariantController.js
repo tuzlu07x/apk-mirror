@@ -15,12 +15,9 @@ async function list(req, res) {
 
 async function update(req, res) {
   try {
-    const variantCode = req.params.variantCode;
+    const variantId = req.params.variantCode;
     const variantData = req.body;
-    const updatedVariant = await variantService.update(
-      variantCode,
-      variantData
-    );
+    const updatedVariant = await variantService.update(variantId, variantData);
     res.status(200).json(updatedVariant);
   } catch (error) {
     res.status(400).send({
@@ -33,14 +30,12 @@ async function update(req, res) {
 
 async function destroy(req, res) {
   try {
-    const variantCode = req.params.variantCode;
-    const deleteVariant = await variantService.delete(variantCode);
-    res
-      .status(200)
-      .json({
-        deleteVariant: deleteVariant,
-        message: "Variant deleted successfully",
-      });
+    const variantId = req.params.variantCode;
+    const deleteVariant = await variantService.delete(variantId);
+    res.status(200).json({
+      deleteVariant: deleteVariant,
+      message: "Variant deleted successfully",
+    });
   } catch (error) {
     res.status(400).send({
       message: error.message,

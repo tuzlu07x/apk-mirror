@@ -51,7 +51,7 @@ export default class ApkDistribution {
 
       if (!this.filterCondination(apkName)) {
         this.data.push({
-          varianId: this.parseApkNameForVariantId(apkName),
+          versionId: this.versionId(apkName),
         });
       }
     });
@@ -66,9 +66,9 @@ export default class ApkDistribution {
     return isAlphaBeta;
   }
 
-  parseApkNameForVariantId(apkName) {
+  versionId(apkName) {
     const parts = apkName.split(" ");
     const version = parts[1];
-    return version.replace(/\./g, "-");
+    return version;
   }
 }

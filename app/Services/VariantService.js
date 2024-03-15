@@ -27,18 +27,16 @@ export default class VariantService {
     }
   }
 
-  async update(variantCode, variantDto) {
+  async update(variantId, variantDto) {
     try {
-      const variant = await this.variantRepository.findByVariantCode(
-        variantCode
-      );
+      const variant = await this.variantRepository.findByVariantCode(variantId);
       if (!variant) throw new Error("Variant not found");
 
-      if (variantDto.variantCode) {
-        variant.variantCode = variantDto.variantCode;
-      }
       if (variantDto.variantId) {
         variant.variantId = variantDto.variantId;
+      }
+      if (variantDto.versionId) {
+        variant.versionId = variantDto.versionId;
       }
       if (variantDto.architecture) {
         variant.architecture = variantDto.architecture;
@@ -60,11 +58,9 @@ export default class VariantService {
     }
   }
 
-  async delete(variantCode) {
+  async delete(variantId) {
     try {
-      const variant = await this.variantRepository.findByVariantCode(
-        variantCode
-      );
+      const variant = await this.variantRepository.findByVariantCode(variantId);
       if (!variant) throw new Error("Variant not found");
       await variant.deleteOne();
       return variant;

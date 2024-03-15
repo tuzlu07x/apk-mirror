@@ -1,32 +1,32 @@
 export default class VariantDto {
   constructor(
-    variantCode,
     variantId,
+    versionId,
     architecture,
     minVersion,
     screenDpi,
     releaseDate
   ) {
-    this.variantCode = variantCode;
     this.variantId = variantId;
+    this.versionId = versionId;
     this.architecture = architecture;
     this.minVersion = minVersion;
     this.screenDpi = screenDpi;
     this.releaseDate = releaseDate;
   }
 
-  setVariantCode(variantCode) {
-    if (typeof variantCode !== "number" || variantCode.length === 0) {
+  setVariantCode(variantId) {
+    if (typeof variantId !== "number" || variantId.length === 0) {
       throw new Error("Variant code must be a non-empty number");
     }
-    this.variantCode = variantCode;
+    this.variantId = variantId;
   }
 
-  setVariantId(variantId) {
-    if (typeof variantId !== "string" || variantId.length === 0) {
+  setVariantId(versionId) {
+    if (typeof versionId !== "string" || versionId.length === 0) {
       throw new Error("Variant ID must be a non-empty string");
     }
-    this.variantId = variantId;
+    this.versionId = versionId;
   }
 
   setArchitecture(architecture) {

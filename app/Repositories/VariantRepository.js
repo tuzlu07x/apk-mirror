@@ -1,9 +1,9 @@
 import Variant from "../../models/Variant.js";
 
 export default class VariantRepository {
-  async findByVariantCode(variantCode) {
+  async findByVariantCode(variantId) {
     try {
-      const variant = await Variant.findOne({ variantCode });
+      const variant = await Variant.findOne({ variantId });
       return variant;
     } catch (error) {
       throw new Error(error);

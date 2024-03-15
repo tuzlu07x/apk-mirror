@@ -32,7 +32,7 @@ const chunk = async (data) => {
 };
 
 const createOrUpdate = async (record) => {
-  const filter = { variantCode: record.variantCode };
+  const filter = { variantId: record.variantId };
   const updateOptions = {
     upsert: true,
     new: true,
