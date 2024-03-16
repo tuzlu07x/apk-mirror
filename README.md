@@ -4,11 +4,11 @@
 
 ## POSTMANLINK
 
-- Asagidaki linkten postmandaki endpoint isteklerini kullanabilirsiniz.
+- Asağıdaki linkten postmandaki endpoint isteklerini kullanabilirsiniz.
 
 [Postman Link](https://www.postman.com/dark-station-425448/workspace/apk-mirror/collection/20110215-76a2e8bc-7ca8-409e-be83-951c4691cdd6?action=share&creator=20110215)
 
-Bu sayfada oncelikle verileri alabilmek icin proxy eklemeniz gerekiyor.
+Bu sayfada öncelikle verileri alabilmek icin proxy eklemeniz gerekiyor.
 
 ```js
 export const proxies = [{ ip: "111.111.111.11", port: "1111" }];
@@ -16,7 +16,7 @@ export const proxies = [{ ip: "111.111.111.11", port: "1111" }];
 
 ## .env
 
-Env dosyasinin Configuration ayarlarini yapacaksiniz. Burada port, mongo uri, redis ve proxy ile alakali configureler var.
+Env dosyasinin Configuration ayarlarını yapacaksınız. Burada port, mongo uri, redis ve proxy ile alakali configureler var.
 
 ```
 PORT=3000
@@ -31,7 +31,7 @@ PROXY_PASSWORD="yyyyyy"
 
 ## Docker run
 
-Yukaridaki ayarlari yaptiktan sonra dockeri ayaga kaldirabilirsiniz.
+Yukaridaki ayarları yaptıktan sonra dockeri ayağa kaldırabilirsiniz.
 
 ```
 docker compose up -d
@@ -45,7 +45,7 @@ docker compose up -d
 
 #### API Referansı
 
-ApkDistribution Classı
+ApkDistribution Class'ı
 
 - constructor(data: Array): Yeni bir ApkDistribution örneği oluşturur. İsteğe bağlı olarak, başlangıç verilerini data parametresi ile alabilirsiniz.
 - getData(): Array: Mevcut veri dizisini döndürür.
@@ -66,7 +66,7 @@ Bu programın çalışması için process.env.APK_MIRROR_BASE_URI ortam değişk
 
 #### Usage
 
-Ornek kullanimi asagidaki gibidir.
+Ornek kullanımı asağıdaki gibidir.
 
 ```js
 import ApkDistribution from "./app/apkMirror/ApkDistribution";
@@ -89,7 +89,7 @@ apkDistribution
 
 ### ApkVariant.js
 
-`app/apkMirror` dizininde `ApkVariant.js` class ile `ApkDistribution.js` classinda aldigimiz versionId'lere ait variantlarin bilgilerinin alindigi classtir.
+`app/apkMirror` dizininde `ApkVariant.js` class ile `ApkDistribution.js` classında aldığımız versionId'lere ait variantların bilgilerinin alındığı classtır.
 
 #### API Referansı
 
@@ -115,7 +115,7 @@ ApkVariantScraping Class
 
 #### ApkMirrorMergeService
 
-`app/Services` dizininde `ApkMirrorMergeService.js` classi ise olusturulan versionId'nin variantIdlerinin eslestirilip `redis` ile queue'ya gonderilen asamadir.
+`app/Services` dizininde `ApkMirrorMergeService.js` classi ise oluşturulan versionId'nin variantIdlerinin eşleştirilip `redis` ile queue'ya gönderilen aşamadır.
 
 ##### Usage
 
@@ -160,11 +160,11 @@ apkMirrorJob.process();
 
 ### ScrapingMirrorController
 
-Burasi ise yukaridaki islemleri gerceklestirip queue'ya datalari gonderip datalarin veritabanina yazilmasi gorevini yapiyor. Postman uzerinden asagidaki url'ye istek atildiginda bu islemleri gerceklestirecek.
+Burasi ise yukarıdaki işlemleri gerçeklestirip queue'ya datalari gönderip dataların veritabanına yazılması görevini yapıyor. Postman üzerinden asağıdaki url'ye istek atıldığında bu işlemleri gerçekleştirecek.
 
 ### Route
 
-`localhost:3000/getApiMirror` adresine get istegi atildiginda Veritabanina yazma islemi gerceklestirilecektir.
+`localhost:3000/getApiMirror` adresine get isteği atıldığında Veritabanına yazma işlemi gerçeklestirilecektir.
 
 ```js
 router.get("/getApiMirror", async (req, res) => {
@@ -187,7 +187,7 @@ router.get("/getApiMirror", async (req, res) => {
 
 ### Routes
 
-`/routes/variantRouter.js` dosyasinda routeleri belirneiyor
+`/routes/variantRouter.js` dosyasında routeleri belirneiyor
 
 ```js
 import { list, update, destroy } from "../app/controllers/VariantController.js";
