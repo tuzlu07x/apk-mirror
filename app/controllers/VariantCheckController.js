@@ -1,4 +1,4 @@
-import VariantCheckService from "../Services/VariantCheck.js";
+import VariantCheckService from "../Services/VariantCheckService.js";
 
 const variantCheckService = new VariantCheckService();
 
