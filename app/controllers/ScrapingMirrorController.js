@@ -1,14 +1,13 @@
 import ApkMirrorMergeService from "../Services/ApkMirrorMergeService.js";
 
-async function getApkMirror() {
+const scraping = new ApkMirrorMergeService();
+
+async function getApkMirror(req, res) {
   try {
-    const scraping = new ApkMirrorMergeService();
-    return scraping.send();
+    const send = await scraping.send();
+    res.status(200).json({ send, message: "Sending" });
   } catch (error) {
-    throw new Error(
-      "There is an error in ScrapingMirrorController: ",
-      error.message
-    );
+    res.status(500).json({ error: error.message });
   }
 }
 

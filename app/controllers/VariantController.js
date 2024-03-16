@@ -15,7 +15,7 @@ async function list(req, res) {
 
 async function update(req, res) {
   try {
-    const variantId = req.params.variantCode;
+    const variantId = req.params.variantId;
     const variantData = req.body;
     const updatedVariant = await variantService.update(variantId, variantData);
     res.status(200).json(updatedVariant);
@@ -30,7 +30,7 @@ async function update(req, res) {
 
 async function destroy(req, res) {
   try {
-    const variantId = req.params.variantCode;
+    const variantId = req.params.variantId;
     const deleteVariant = await variantService.delete(variantId);
     res.status(200).json({
       deleteVariant: deleteVariant,
