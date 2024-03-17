@@ -40,7 +40,7 @@ async function destroy(req, res) {
     res.status(400).send({
       message: error.message,
       status: 400,
-      data: new Date(),
+      date: new Date(),
     });
   }
 }

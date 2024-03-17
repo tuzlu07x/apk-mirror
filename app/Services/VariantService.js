@@ -6,12 +6,10 @@ export default class VariantService {
   }
   async list(page, limit) {
     try {
-      const totalDocuments = await Variant.countDocuments();
+      const totalDocuments = await this.variantRepository.countDocuments();
       const totalPages = Math.ceil(totalDocuments / limit);
-      const variants = await Variant.find()
-        .skip((page - 1) * limit)
-        .limit(limit);
-
+      const variants = await this.variantRepository.list(page, limit);
+      console.log(variants);
       return {
         data: variants,
         pagination: {
@@ -29,7 +27,7 @@ export default class VariantService {
 
   async update(variantId, variantDto) {
     try {
-      const variant = await this.variantRepository.findByVariantCode(variantId);
+      const variant = await this.variantRepository.findByVariantId(variantId);
       if (!variant) throw new Error("Variant not found");
 
       if (variantDto.variantId) {
@@ -60,9 +58,8 @@ export default class VariantService {
 
   async delete(variantId) {
     try {
-      const variant = await this.variantRepository.findByVariantCode(variantId);
+      const variant = await this.variantRepository.deleteByVariantId(variantId);
       if (!variant) throw new Error("Variant not found");
-      await variant.deleteOne();
       return variant;
     } catch (error) {
       throw new Error(error);
